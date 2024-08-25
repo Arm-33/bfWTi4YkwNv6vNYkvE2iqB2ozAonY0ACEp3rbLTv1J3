@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>เข้าสู่ระบบ</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="login-username">ชื่อผู้ใช้:</label>
+                <input type="text" id="login-username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="login-password">รหัสผ่าน:</label>
+                <input type="password" id="login-password" name="password" required>
+            </div>
+            <button type="button" onclick="login()">เข้าสู่ระบบ</button>
+        </form>
+        <p id="login-message" class="error-message"></p>
+        <p class="signup">ยังไม่มีบัญชี? <a href="signup.html">สมัครสมาชิก</a></p>
+    </div>
+
+    <script>
+        function login() {
+            // Get form values
+            var username = document.getElementById('login-username').value;
+            var password = document.getElementById('login-password').value;
+            var message = document.getElementById('login-message');
+
+            // Get stored user data
+            var storedUsername = localStorage.getItem('username');
+            var storedPassword = localStorage.getItem('password');
+
+            // Check if credentials match
+            if (username === storedUsername && password === storedPassword) {
+                alert("เข้าสู่ระบบสำเร็จ!");
+                window.location.href = "dashboard.html"; // Redirect to a protected page
+            } else {
+                message.textContent = "ไม่มีบัญชีหรือข้อมูลไม่ถูกต้อง";
+            }
+        }
+    </script>
+</body>
+</html>

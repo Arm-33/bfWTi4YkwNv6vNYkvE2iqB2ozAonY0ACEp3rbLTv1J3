@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สมัครสมาชิก</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2>สมัครสมาชิก</h2>
+        <form id="signupForm">
+            <div class="input-group">
+                <label for="username">ชื่อผู้ใช้:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">รหัสผ่าน:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">ยืนยันรหัสผ่าน:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <button type="button" onclick="register()">สมัครสมาชิก</button>
+        </form>
+        <p id="signup-message" class="error-message"></p>
+        <p class="login">มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบ</a></p>
+    </div>
+
+    <script>
+        function register() {
+            // Get form values
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var message = document.getElementById('signup-message');
+
+            // Validate username and password
+            if (!/^\d{5,9}$/.test(username)) {
+                message.textContent = "ชื่อผู้ใช้ต้องเป็นตัวเลข 1-9 ตัว, มากกว่า 4 ตัวและไม่เกิน 9 ตัว";
+                return;
+            }
+
+            if (!/^\d{5,9}$/.test(password)) {
+                message.textContent = "รหัสผ่านต้องเป็นตัวเลข 1-9 ตัว, มากกว่า 4 ตัวและไม่เกิน 9 ตัว";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                message.textContent = "รหัสผ่านและการยืนยันรหัสผ่านไม่ตรงกัน";
+                return;
+            }
+
+            // Simulate storing user data
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+
+            // Redirect to login page after successful registration
+            alert("สมัครสมาชิกสำเร็จ!");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>
+
